@@ -1,9 +1,9 @@
 CREATE DATABASE trip
 
-IF OBJECT_ID('dbo.Trips', 'U') IS NOT NULL
+IF OBJECT_ID('trip.dbo.Trips', 'U') IS NOT NULL
   DROP TABLE dbo.Trips;
 
-CREATE TABLE [dbo].[Trips]
+CREATE TABLE trip.[dbo].[Trips]
 (
     [Id] BIGINT IDENTITY(1,1) PRIMARY KEY, 
     [TpepPickupDatetime] DATETIME2(0) NOT NULL, 
@@ -20,14 +20,14 @@ CREATE TABLE [dbo].[Trips]
 
 
 CREATE NONCLUSTERED INDEX IX_Trips_PULocationID_TipAmount 
-ON [dbo].[Trips] ([PULocationID]) 
+ON trip.[dbo].[Trips] ([PULocationID]) 
 INCLUDE ([TipAmount]);
 
 CREATE NONCLUSTERED INDEX IX_Trips_TripDistance_DESC
-ON [dbo].[Trips] ([TripDistance] DESC);
+ON trip.[dbo].[Trips] ([TripDistance] DESC);
 
 CREATE NONCLUSTERED INDEX IX_Trips_Dropoff_Pickup
-ON [dbo].[Trips] ([TpepDropoffDatetime], [TpepPickupDatetime]);
+ON trip.[dbo].[Trips] ([TpepDropoffDatetime], [TpepPickupDatetime]);
 
 CREATE NONCLUSTERED INDEX IX_Trips_PULocationID_General
-ON [dbo].[Trips] ([PULocationID], [TpepPickupDatetime]);
+ON trip.[dbo].[Trips] ([PULocationID], [TpepPickupDatetime]);
